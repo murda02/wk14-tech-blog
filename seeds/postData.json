@@ -8,13 +8,13 @@
   {
     "title": "Nodejs is...",
     "contents": "Node.js is basically a server capable of executing JavaScript.",
-    "username": "bitCoinThief",
-    "date_created": "08/08/2021"
+    "date_created": "08/08/2021",
+    "username": "bitCoinThief"
   },
   {
     "title": "MVC is...",
     "contents": "like a sandwich shop",
-    "username": "meltingWood",
-    "date_created": "07/07/2021"
+    "date_created": "07/07/2021",
+    "username": "meltingWood"
   }
 ]
