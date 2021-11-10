@@ -15,7 +15,7 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    contents: {
+    content: {
       type: DataTypes.STRING,
     },
     date_created: {
@@ -23,8 +23,8 @@ Post.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    username: {
-      type: DataTypes.STRING,
+    user_id: {
+      type: DataTypes.INTEGER,
       allowNull: false,
     }
     // username: {

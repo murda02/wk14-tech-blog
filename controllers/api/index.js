@@ -1,6 +1,6 @@
 const router = require('express').Router();
+const userRoutes = require("./userRoutes")
 
-
-// router.use('/dashboard', dashboardRoutes);
+router.use('/', userRoutes);
 
 module.exports = router;
