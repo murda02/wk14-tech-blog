@@ -17,15 +17,16 @@
 <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{username}}!</h2>
-  </div>
-</div>
+    <p>
+      {{!-- {{posts}} --}}
+    </p>
 
 <!-- Loop over each object in the post array -->
-{{#each post as |post| }}
+{{#each posts as |post| }}
 <div class="row mb-4 post">
   <div class="col-md-5" id="post-info">
     <h2>
-
+      There should be posts here...
       <a href="/post/{{post.id}} id=post-title">{{post.title}}</a>
     </h2>
     <p>Created by {{post.username}} on {{format_date post.date_created}}</p>
@@ -37,3 +38,7 @@
   </div>
 </div>
 {{/each}}
+
+  </div>
+</div>
+

@@ -1,4 +1,4 @@
-console.log("post conencted")
+console.log("post connencted")
 const entryFormHandler = async () => {
    
     console.log("gotem")

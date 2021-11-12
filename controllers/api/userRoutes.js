@@ -5,8 +5,14 @@ const { User, Post } = require('../../models');
 router.post('/', async (req, res) => {
   try {
     const userData = await User.create(req.body);
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
     res.status(200).json(userData);
-  } catch (err) {
+  })
+ } catch (err) {
     res.status(400).json(err);
   }
 });
@@ -22,8 +28,18 @@ router.post('/blog-entries', async (req, res) => {
   }
 });
 
+router.get('/', async (req, res) => {
+  try {
+    const blogData = await Post.findAll({})
+    const posts = blogData.map((post) => post.get({ plain: true}))
+    res.render('homepage', { posts })
+  } catch (err) {
+    res.status(500).json(err)
+    throw new Error(err.message)
+  }
+})
 
-// creat a get all route for posts
+// create a get all route for posts
 // create a update route
 // create the comment routes ***
 

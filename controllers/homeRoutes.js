@@ -19,6 +19,7 @@ router.get('/', async (req, res) => {
     console.log('req.session.logged_in: ',req.session.logged_in);
     // Pass serialized data and session flag into template
     res.render('homepage', { 
+      // ...user,
       posts, 
       logged_in: req.session.logged_in 
     });
@@ -111,8 +112,8 @@ router.get('/post/:id', async (req, res) => {
     const postData = await Post.findByPk(req.params.id, {
       include: [
         {
-          model: User,
-          attributes: ['username'],
+          model: Post,
+          attributes: ['user_id'],
         },
       ],
     });
