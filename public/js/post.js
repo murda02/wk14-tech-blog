@@ -1,10 +1,9 @@
-console.log("post connencted")
 const entryFormHandler = async () => {
    
     console.log("gotem")
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#post-content').value.trim();
-  console.log(title, content)
+  
     if (title && content) {
       console.log(title, content);
 

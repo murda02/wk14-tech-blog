@@ -1,0 +1,36 @@
+<header class="display-flex justify-space-between align-center p-2">
+      <h1>
+        <span role="img" aria-label="notepad">🗒️</span>
+        Tech post | Dashboard
+      </h1>
+      <nav>
+        <!-- Conditionally render login or logout links -->
+        {{#if logged_in}}
+        <a href="/">home</a> |
+        <button class="no-button" id="logout">logout</button>
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}
+      </nav>
+</header>
+
+
+{{!-- <h1>HELLO!!!</h1> --}}
+{{!-- <div class="row">
+  <div class="col-auto">
+    <h2>Welcome, {{username}}!</h2>
+  </div>
+</div> --}}
+
+  
+<div class='text-center' id='blog-card'>
+  <h2>{{user.username}}</h2>
+  <p>
+    <span class='subject-text'>{{title}}</span>
+  </p>
+  <p>{{content}}</p>
+  <p>Created by {{user.username}} on {{format_date date_created}}</p>
+  <p>
+    <a class='btn btn-primary' href="/edit" >Edit this Blog</a>
+  </p>
+</div>

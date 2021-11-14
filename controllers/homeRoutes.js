@@ -16,10 +16,11 @@ router.get('/', async (req, res) => {
 
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
-    console.log('req.session.logged_in: ',req.session.logged_in);
+
+    console.log("postData: ", postData);
+
     // Pass serialized data and session flag into template
     res.render('homepage', { 
-      // ...user,
       posts, 
       logged_in: req.session.logged_in 
     });
@@ -107,28 +108,50 @@ router.post('/logout', (req, res) => {
   }
 });
 
-router.get('/post/:id', async (req, res) => {
+// router.get('/post/:id', async (req, res) => {
+//   try {
+//     const postData = await Post.findByPk(req.params.id, {
+//       include: [
+//         {
+//           model: Post,
+//           attributes: ['user_id'],
+//         },
+//       ],
+//     });
+
+//     const post = postData.get({ plain: true });
+
+//     res.render('blog', {
+//       ...post,
+//       logged_in: req.session.logged_in
+//     });
+//   } catch (err) {
+//     res.status(500).json(err);
+//   }
+// });
+
+router.get('/blog-entries/:id', async (req, res) => {
+  console.log("req.params.id: ", req.params.id);
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
-        {
-          model: Post,
-          attributes: ['user_id'],
-        },
-      ],
+       { 
+         model: User,
+        attributes: ['username']  
+      }
+      ]
     });
 
     const post = postData.get({ plain: true });
 
-    res.render('post', {
+    res.render('blog',{
       ...post,
       logged_in: req.session.logged_in
-    });
+    })
+    // res.status(200).json(postData);
   } catch (err) {
-    res.status(500).json(err);
+    res.status(400).json(err);
   }
 });
-
-
 
 module.exports = router;
