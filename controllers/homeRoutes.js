@@ -154,4 +154,22 @@ router.get('/blog-entries/:id', async (req, res) => {
   }
 });
 
+
+router.post('/blog-entries', async (req, res) => {
+  try {
+    const postData = await Post.create({
+      ...req.body,
+      user_id: req.session.user_id,
+    });
+    console.log("post data==================##############", postData);
+    // const post = postData.get({ plain: true });
+
+    res.render('homepage')
+    // res.status(200).json(postData);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+});
+
+
 module.exports = router;

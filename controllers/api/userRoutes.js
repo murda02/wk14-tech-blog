@@ -39,7 +39,6 @@ router.get('/', async (req, res) => {
 
 
 
-
 //   // DELETE a user
 // router.delete('/:id', async (req, res) => {
 //     try {
