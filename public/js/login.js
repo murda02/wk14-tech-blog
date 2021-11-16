@@ -1,5 +1,3 @@
-console.log("connected to login")
-
 const loginFormHandler = async (event) => {
   event.preventDefault();
 
@@ -30,14 +28,12 @@ const signupFormHandler = async (event) => {
   const username = document.querySelector('#username-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
-console.log("email, user,pw", email, username, password);
   if (username && email && password) {
     const response = await fetch('/api/user', {
       method: 'POST',
       body: JSON.stringify({ username, email, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-    console.log("response: ", response);
     if (response.ok) {
       if (email && password) {
         const response = await fetch('/api/user/login', {
@@ -48,15 +44,12 @@ console.log("email, user,pw", email, username, password);
     
         if (response.ok) {
           window.location = window.location;
-          document.location.replace('/');
-          // document.location.replace('/login');
+          document.location.replace('/dashboard');
         } else {
-          console.log("error 1");
           alert(response.statusText);
         }
       }
     } else {
-      console.log("error 2");
       alert(response.statusText);
     }
   }

@@ -1,4 +1,3 @@
-console.log("logout connected")
 const logout = async () => {
   const response = await fetch('/logout', {
     method: 'POST',

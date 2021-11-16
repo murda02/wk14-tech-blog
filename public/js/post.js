@@ -1,11 +1,9 @@
 const entryFormHandler = async () => {
    
-    console.log("gotem")
     const title = document.querySelector('#post-title').value.trim();
     const content = document.querySelector('#post-content').value.trim();
   
     if (title && content) {
-      console.log(title, content);
 
       const response = await fetch('/blog-entries', {
         method: 'POST',
@@ -21,4 +19,4 @@ const entryFormHandler = async () => {
     }
   };
   
-  document.querySelector('#subBtn').addEventListener('click', () => { console.log("clicked");entryFormHandler()});
+  document.querySelector('#subBtn').addEventListener('click', () => { entryFormHandler()});

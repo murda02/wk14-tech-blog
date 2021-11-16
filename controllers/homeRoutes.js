@@ -17,8 +17,6 @@ router.get('/', async (req, res) => {
     // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    console.log("postData: ", postData);
-
     // Pass serialized data and session flag into template
     res.render('homepage', { 
       posts, 
@@ -80,16 +78,12 @@ router.post('/login', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      console.log("???????????????????????????? " + req.session.user_id)
-      console.log('--------------------------------------------------------------')
-      console.log("userData", userData)
       res.json({ user: userData, message: 'You are now logged in!' });
     });
 
   } catch (err) {
     res.status(400).json(err);
   }
-  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   // If the user is already logged in, redirect the request to another route
   if (req.session.logged_in) {
     res.redirect('/');
@@ -98,7 +92,6 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-  console.log("~~~~~~~~~~!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
@@ -108,30 +101,7 @@ router.post('/logout', (req, res) => {
   }
 });
 
-// router.get('/post/:id', async (req, res) => {
-//   try {
-//     const postData = await Post.findByPk(req.params.id, {
-//       include: [
-//         {
-//           model: Post,
-//           attributes: ['user_id'],
-//         },
-//       ],
-//     });
-
-//     const post = postData.get({ plain: true });
-
-//     res.render('blog', {
-//       ...post,
-//       logged_in: req.session.logged_in
-//     });
-//   } catch (err) {
-//     res.status(500).json(err);
-//   }
-// });
-
 router.get('/blog-entries/:id', async (req, res) => {
-  console.log("req.params.id: ", req.params.id);
   try {
     const postData = await Post.findByPk(req.params.id, {
       include: [
@@ -148,7 +118,6 @@ router.get('/blog-entries/:id', async (req, res) => {
       ...post,
       logged_in: req.session.logged_in
     })
-    // res.status(200).json(postData);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -161,11 +130,7 @@ router.post('/blog-entries', async (req, res) => {
       ...req.body,
       user_id: req.session.user_id,
     });
-    console.log("post data==================##############", postData);
-    // const post = postData.get({ plain: true });
-
     res.render('homepage')
-    // res.status(200).json(postData);
   } catch (err) {
     res.status(400).json(err);
   }
