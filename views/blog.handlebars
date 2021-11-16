@@ -1,12 +1,13 @@
 <header class="display-flex justify-space-between align-center p-2">
       <h1>
         <span role="img" aria-label="notepad">🗒️</span>
-        Tech post | Dashboard
+        Tech Post 
       </h1>
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
         <a href="/">home</a> |
+        <a href="/dashboard">dashboard</a> | 
         <button class="no-button" id="logout">logout</button>
         {{else}}
         <a href="/login">login</a>
@@ -23,10 +24,10 @@
 </div> --}}
 
   
-<div class='text-center' id='blog-card'>
-  <h2>{{user.username}}</h2>
+<div class='text-left' id='blog-card'>
+  <h2>Username: {{user.username}}</h2>
   <p>
-    <span class='subject-text'>{{title}}</span>
+    <span class='subject-text'>Title: {{title}}</span>
   </p>
   <p>{{content}}</p>
   <p>Created by {{user.username}} on {{format_date date_created}}</p>
